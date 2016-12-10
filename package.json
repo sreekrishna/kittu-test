@@ -1,0 +1,17 @@
+{
+  "name": "test-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "oracledb-for-lambda": "^1.9.3-6"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.5.7"
+  }
+}
