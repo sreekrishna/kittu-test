@@ -48,13 +48,14 @@ plugins:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
+package:
 #  include:
 #    - include-me.js
 #    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+  exclude:
+    - node_modules/oracledb-for-lambda/lambda-lib.zip
+    - node_modules/oracledb-for-lambda/lib/libociei.so
+    - node_modules/oracledb-for-lambda/lambda-lib/**
 
 functions:
   hello:
