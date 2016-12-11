@@ -3,27 +3,26 @@
 var oracledb = require('oracledb-for-lambda');
 
 
-module.exports.hello = (event, context, callback) => {
+function getDepartment(queryStr, queryParam, callback) {
 oracledb.getConnection({
      user: "admin",
      password: "password",
      connectString: "testdb.cxxho8n0rgx6.us-east-1.rds.amazonaws.com:1521/ORCL"
 }, function(err, connection) {
-      console.log("Inside connection");
      if (err) {
           console.error(err.message);
           return;
      }
-     connection.execute( "SELECT department_id, department_name FROM departments WHERE department_id = 180",
-     [],
-     function(err, result) {
+     connection.execute(queryStr,
+     queryParam,
+     function(err, results) {
           if (err) {
                console.error(err.message);
                doRelease(connection);
                return;
           }
-          console.log(result.metaData);
-          console.log(result.rows);
+          console.log(results.metaData);
+          console.log(results.rows);
           doRelease(connection);
      });
 });
@@ -36,6 +35,11 @@ function doRelease(connection) {
      );
 }
 
+}
+module.exports.hello = (event, context, callback) => {
+  getDepartment("SELECT department_id depId, department_name depName FROM departments WHERE department_id = :1", {
+     1: 180
+  });
   const response = {
     statusCode: 200,
     body: JSON.stringify({
