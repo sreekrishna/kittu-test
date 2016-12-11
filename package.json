@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "oracledb-for-lambda": "^1.9.3-6"
+    "oracledb": "^1.11.0"
   },
   "devDependencies": {
     "serverless-offline": "^3.5.7"

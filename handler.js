@@ -1,9 +1,9 @@
 'use strict';
 
-var oracledb = require('oracledb-for-lambda');
+var oracledb = require('oracledb');
 
 
-function getDepartment(queryStr, queryParam, callback) {
+function executeQuery(queryStr, queryParam, callback) {
 oracledb.getConnection({
      user: "admin",
      password: "password",
@@ -37,9 +37,11 @@ function doRelease(connection) {
 
 }
 module.exports.hello = (event, context, callback) => {
-  getDepartment("SELECT department_id depId, department_name depName FROM departments WHERE department_id = :1", {
+  var qry = "SELECT department_id depId, department_name depName FROM departments WHERE department_id = :1";
+  var params = {
      1: 180
-  });
+  };
+  executeQuery(qry, params );
   const response = {
     statusCode: 200,
     body: JSON.stringify({
